@@ -1,0 +1,141 @@
+/* devices.css */
+
+.devices-page {
+  padding: 1rem 2rem;
+  background-color: #fafafa;
+}
+
+.devices-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.add-device-btn {
+  padding: 0.5rem 1rem;
+  background-color: #003366;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-device-btn:hover {
+  background-color: #002244;
+}
+
+.devices-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+}
+
+.devices-table th,
+.devices-table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #dddddd;
+  text-align: left;
+}
+
+.status-badge, .status-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.status-badge.active, .status-indicator.online {
+  background-color: #28a745;
+}
+
+.status-badge.disabled, .status-indicator.offline {
+  background-color: #dc3545;
+}
+
+.action-btn {
+  padding: 0.3rem 0.6rem;
+  margin-right: 0.3rem;
+  border: 1px solid #003366;
+  background-color: white;
+  color: #003366;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.action-btn.delete {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.action-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-form .form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-form label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.modal-form input,
+.modal-form select {
+  padding: 0.5rem;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.save-btn {
+  padding: 0.4rem 0.8rem;
+  background-color: #003366;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  padding: 0.4rem 0.8rem;
+  background-color: #cccccc;
+  color: #333333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

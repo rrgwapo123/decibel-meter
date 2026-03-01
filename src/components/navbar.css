@@ -1,0 +1,207 @@
+/* navbar.css */
+
+.navbar-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  z-index: 200;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.navbar-title {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.navbar-spacer {
+  flex-grow: 1;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-name {
+  font-weight: 600;
+}
+
+.logout-btn {
+  padding: 0.3rem 0.6rem;
+  background-color: #003366;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #002244;
+}
+
+/* Logout Confirmation Modal */
+.logout-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.logout-modal {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  text-align: center;
+}
+
+.logout-modal h2 {
+  margin-top: 0;
+  color: #003366;
+  font-size: 1.4rem;
+}
+
+.logout-modal p {
+  color: #555555;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.logout-modal-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-cancel, .btn-confirm {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cancel {
+  background-color: #cccccc;
+  color: #333333;
+}
+
+.btn-cancel:hover {
+  background-color: #999999;
+}
+
+.btn-confirm {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+
+.btn-confirm:hover {
+  background-color: #bb2d3b;
+}
+
+@media (max-width: 600px) {
+  .navbar-user {
+    font-size: 0.9rem;
+  }
+  .navbar-title {
+    font-size: 1rem;
+  }
+  .logout-modal {
+    margin: 1rem;
+  }
+}
+
+/* profile picture and user dropdown */
+.profile-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+/* caret indicator */
+.profile-container::after {
+  content: '\25BE'; /* down triangle */
+  font-size: 0.6rem;
+  margin-left: 0.25rem;
+  color: #333333;
+  transition: transform 0.2s ease;
+}
+
+.profile-container.open::after {
+  transform: rotate(180deg);
+}
+
+.user-menu-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 1rem;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 300;
+  padding: 0.5rem 0;
+}
+
+.user-menu-dropdown .dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.user-menu-dropdown .dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+.user-menu-dropdown .logout-dropdown {
+  color: #dc3545;
+}
+
+.user-menu-dropdown .logout-dropdown:hover {
+  background-color: #ffe6e6;
+}
+.user-menu-dropdown .logout-dropdown {
+  color: #dc3545;
+}
+
+.user-menu-dropdown .logout-dropdown:hover {
+  background-color: #ffe6e6;
+}

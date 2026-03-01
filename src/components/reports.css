@@ -1,0 +1,147 @@
+/* Status badge styles */
+.status-badge {
+  display: inline-block;
+  padding: 0.15em 0.9em;
+  border-radius: 8px;
+  font-size: 0.97em;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: capitalize;
+  margin-left: 0.5em;
+  margin-right: 0.2em;
+  box-sizing: border-box;
+  border: 1.5px solid;
+  line-height: 1.6;
+  vertical-align: middle;
+  white-space: nowrap;
+  background: rgba(30,34,40,0.7);
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.status-pending {
+  color: #b38600;
+  border-color: #ffe58f;
+  background: rgba(255, 247, 214, 0.12);
+}
+.status-action-taken {
+  color: #237804;
+  border-color: #b7eb8f;
+  background: rgba(230, 255, 237, 0.12);
+}
+.status-dismissed {
+  color: #a8071a;
+  border-color: #ffa39e;
+  background: rgba(255, 241, 240, 0.12);
+}
+/* reports.css */
+
+.reports-container, .report-form-container, .report-details {
+  padding: 1rem;
+}
+
+.report-form {
+  max-width: 700px;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.report-form input, .report-form textarea, .report-form select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.report-form textarea { min-height: 100px; }
+
+.btn-submit {
+  align-self: flex-start;
+  background: #003366;
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reports-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.reports-controls input, .reports-controls select {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.reports-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reports-table th, .reports-table td {
+  border: 1px solid #eee;
+  padding: 0.6rem;
+}
+
+.report-row:hover { background:#fafafa; cursor: pointer; }
+
+.report-details {
+  background:#fff; border-radius:6px; padding:1rem; box-shadow:0 2px 6px rgba(0,0,0,0.06);
+}
+
+.attachments ul { list-style:none; padding:0; }
+
+.show-attach { background:#eee; border:none; padding:0.25rem 0.5rem; border-radius:4px; cursor:pointer; }
+
+.error { color:#cc0000; font-size:0.9rem; }
+
+/* ReportUpdate component */
+.report-update-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.btn-update {
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+.update-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 1.2rem;
+}
+.update-form select, .update-form textarea {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+.comments-list {
+  margin-top: 1rem;
+}
+.comments-list ul {
+  list-style: none;
+  padding: 0;
+}
+.comments-list li {
+  background: #e5e7eb;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.97em;
+}
