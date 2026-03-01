@@ -36,11 +36,7 @@ const Users = ({ users, addUser, updateUser, deleteUser }) => {
     }
     closeModal();
   };
-
-  const handleDelete = (id) => {
-    deleteUser(id);
-  };
-
+  
   return (
     <div className="users-page">
       <header className="users-header">
