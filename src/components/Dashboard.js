@@ -3,7 +3,7 @@ import './dashboard.css';
 
 
 const Dashboard = ({ stats, violations, devices = [] }) => {
-  const [alert, setAlert] = useState('');
+const [alert] = useState(false);
 
   // Count violations for today
   const getTodayCount = () => {

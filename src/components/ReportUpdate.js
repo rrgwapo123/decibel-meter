@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { getStatusBadge } from './ReportDetails';
 import './reports.css';
 
 const ReportUpdate = ({ report, onUpdate, currentUser }) => {
