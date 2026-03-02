@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import './dashboard.css';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 
 
-const Dashboard = ({ stats, violations, devices = [] }) => {
-const [alert] = useState(false);
-const [dbValue, setDbValue] = useState(48);
-const [loadLevel, setLoadLevel] = useState('Low');
-const mapPositions = [
+const Dashboard = ({ stats, violations, devices = [], updateStats }) => {
+  const [alert] = useState(false);
+  const [dbValue, setDbValue] = useState(48);
+  const [loadLevel, setLoadLevel] = useState('Low');
+  const [history, setHistory] = useState([]); // keep last 50 points for chart
+  const mapPositions = [
   { x: 14, y: 26 },
   { x: 38, y: 18 },
   { x: 62, y: 28 },
@@ -27,13 +37,26 @@ const fallbackSensors = [
     const id = setInterval(() => {
       const next = Math.max(35, Math.min(110, Math.round(dbValue + (Math.random() * 16 - 8))));
       setDbValue(next);
+
+      // update stats in parent if provided (e.g. highest db)
+      if (updateStats && next > stats.highestDb) {
+        updateStats({ highestDb: next });
+      }
+
+      // push new reading into history, keep only last 50 entries
+      setHistory((h) => {
+        const time = new Date().toLocaleTimeString();
+        const newData = [...h, { time, value: next }];
+        return newData.slice(-50);
+      });
+
       const pct = Math.min(100, Math.max(0, Math.round((next - 35) / 75 * 100)));
       if (pct < 35) setLoadLevel('Low');
       else if (pct < 70) setLoadLevel('Moderate');
       else setLoadLevel('High');
     }, 1200);
     return () => clearInterval(id);
-  }, [dbValue]);
+  }, [dbValue, stats.highestDb, updateStats]);
 
   // Count violations for today
   const getTodayCount = () => {
@@ -115,8 +138,16 @@ const fallbackSensors = [
             </div>
           </div>
           <div className="chart-section">
-            <h2>Decibel Levels (Line Chart)</h2>
-            <div className="chart-placeholder">[Line chart placeholder]</div>
+            <h2>Decibel Levels (Last Minute)</h2>
+            <ResponsiveContainer width="100%" height={250}>
+              <LineChart data={history} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="time" tick={{ fontSize: 10 }} />
+                <YAxis domain={[35, 110]} />
+                <Tooltip />
+                <Line type="monotone" dataKey="value" stroke="#8884d8" dot={false} />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
           <div className="map-section">
             <div className="map-header">

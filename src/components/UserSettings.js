@@ -35,6 +35,15 @@ const UserSettings = ({ currentUser = {}, updateUser }) => {
       <form className="settings-form" onSubmit={handleSubmit} noValidate>
         <div className="form-group">
           <label htmlFor="picture">Profile Picture URL</label>
+          {form.picture && (
+            <div className="picture-preview">
+              <img
+                src={form.picture}
+                alt="Profile preview"
+                onError={(e) => { e.target.style.display = 'none'; }}
+              />
+            </div>
+          )}
           <input
             id="picture"
             name="picture"

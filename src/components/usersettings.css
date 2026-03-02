@@ -52,3 +52,15 @@
 .login-button:hover {
   background-color: #002244;
 }
+
+/* profile picture preview */
+.picture-preview {
+  margin-bottom: 0.5rem;
+}
+.picture-preview img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}

@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from 'rea
 import React, { useState } from 'react';
 import Login from './components/Login';
 import Layout from './components/Layout';
+import Welcome from './components/Welcome';
+import LoginSuccess from './components/LoginSuccess';
 import Dashboard from './components/Dashboard';
 import Devices from './components/Devices';
 import Violations from './components/Violations';
@@ -32,7 +34,7 @@ const initialStats = {
 };
 
 const initialViolations = [
-  { id: 1, sensor: 'Sensor A', level: 95.7, time: '2026-03-01 09:23' },
+  { id: 1, sensor: 'Sensor A', level: 95.7, time: '2026-03-01 09:23', reportId: null },
 ];
 
 function App() {
@@ -53,15 +55,33 @@ function App() {
   });
 
   const [reports, setReports] = useState([]);
+  const [showLoginSuccess, setShowLoginSuccess] = useState(false);
 
+  // when a report is created we'll optionally create a violation entry if it's pending
   const addReport = (report) => {
     setReports((prev) => {
       const nextId = prev.length ? prev[prev.length - 1].id + 1 : 1;
       const publishedDate = new Date().toISOString().slice(0, 16).replace('T', ' ');
-      return [
-        ...prev,
-        { id: nextId, publishedDate, ...report },
-      ];
+      const newReport = { id: nextId, publishedDate, ...report };
+
+      // automatically create corresponding violation for pending reports
+      if (newReport.status === 'PENDING') {
+        setViolations((vprev) => {
+          const vid = vprev.length ? vprev[vprev.length - 1].id + 1 : 1;
+          return [
+            ...vprev,
+            {
+              id: vid,
+              sensor: newReport.location,
+              level: 0, // placeholder level
+              time: newReport.datetime,
+              reportId: newReport.id,
+            },
+          ];
+        });
+        setStats((s) => ({ ...s, violationsToday: s.violationsToday + 1 }));
+      }
+      return [...prev, newReport];
     });
   };
 
@@ -72,6 +92,7 @@ function App() {
   const handleLogin = (email) => {
     setLoggedIn(true);
     setUserEmail(email);
+    setShowLoginSuccess(true);
     setCurrentUser({
       email,
       username: email.split('@')[0],
@@ -132,6 +153,14 @@ function App() {
     );
     setStats((prev) => ({ ...prev, violationsToday: prev.violationsToday + 1 }));
   };
+  const removeViolationByReport = (reportId) => {
+    setViolations((prev) => prev.filter((v) => v.reportId !== reportId));
+    setStats((prev) => ({
+      ...prev,
+      violationsToday: Math.max(0, prev.violationsToday - 1),
+    }));
+  };
+
   const updateStats = (updates) => setStats((prev) => ({ ...prev, ...updates }));
 
   // Helper for report details route
@@ -140,7 +169,33 @@ function App() {
     const [report, setReport] = React.useState(() => reports.find((r) => String(r.id) === String(id)));
 
     const handleUpdate = (updated) => {
-      setReports((prev) => prev.map((r) => r.id === updated.id ? updated : r));
+      // determine if status transitioned in/out of PENDING
+      if (report.status !== updated.status) {
+        const prevStatus = report.status;
+        const newStatus = updated.status;
+        if (prevStatus === 'PENDING' && newStatus !== 'PENDING') {
+          // remove any violation tied to this report
+          removeViolationByReport(updated.id);
+        } else if (prevStatus !== 'PENDING' && newStatus === 'PENDING') {
+          // add violation for re‑pending report
+          setViolations((vprev) => {
+            const vid = vprev.length ? vprev[vprev.length - 1].id + 1 : 1;
+            return [
+              ...vprev,
+              {
+                id: vid,
+                sensor: updated.location,
+                level: 0,
+                time: updated.datetime,
+                reportId: updated.id,
+              },
+            ];
+          });
+          setStats((s) => ({ ...s, violationsToday: s.violationsToday + 1 }));
+        }
+      }
+
+      setReports((prev) => prev.map((r) => (r.id === updated.id ? updated : r)));
       setReport(updated);
     };
 
@@ -149,6 +204,8 @@ function App() {
 
   return (
     <Router>
+      <Welcome />
+      {showLoginSuccess && <LoginSuccess email={userEmail} onClose={() => setShowLoginSuccess(false)} />}
       <div className="App">
         <Routes>
           <Route
