@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './dashboard.css';
+import '../styles/dashboard.css';
 import {
   LineChart,
   Line,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './usersettings.css';
+import '../styles/usersettings.css';
 
 const UserSettings = ({ currentUser = {}, updateUser }) => {
   const [form, setForm] = useState({

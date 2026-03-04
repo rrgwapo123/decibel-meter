@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './violations.css';
+import '../styles/violations.css';
 
 const Violations = ({ violations = [] }) => {
   const [searchTerm, setSearchTerm] = useState('');

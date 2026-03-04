@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { getStatusBadge } from './ReportDetails';
 import { useNavigate } from 'react-router-dom';
-import './reports.css';
+import '../styles/reports.css';
 
 const Reports = ({ reports = [] }) => {
   const navigate = useNavigate();

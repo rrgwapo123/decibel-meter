@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './loginSuccess.css';
+import '../styles/loginSuccess.css';
 
 const LoginSuccess = ({ email, onClose }) => {
   const [isVisible, setIsVisible] = useState(true);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './users.css';
+import '../styles/users.css';
 
 const Users = ({ users, addUser, updateUser, deleteUser }) => {
   const [showModal, setShowModal] = useState(false);

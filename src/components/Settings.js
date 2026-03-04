@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './settings.css';
+import '../styles/settings.css';
 
 const Settings = () => {
   const [threshold, setThreshold] = useState(90);

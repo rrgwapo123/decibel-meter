@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './navbar.css';
+import '../styles/navbar.css';
 
 const Navbar = ({ toggleSidebar, userEmail = '', currentUser = {}, onLogout }) => {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createPortal } from 'react-dom';
-import './reports.css';
+import '../styles/reports.css';
 
 
 const ReportForm = ({ addReport }) => {

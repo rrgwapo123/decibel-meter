@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './reports.css';
+import '../styles/reports.css';
 
 const ReportUpdate = ({ report, onUpdate, currentUser }) => {
   const [status, setStatus] = useState(report.status || 'PENDING');

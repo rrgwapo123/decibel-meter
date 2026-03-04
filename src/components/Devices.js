@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './devices.css';
+import '../styles/devices.css';
 
 const Devices = ({ devices, addDevice, updateDevice, deleteDevice, toggleStatus }) => {
   const [showModal, setShowModal] = useState(false);

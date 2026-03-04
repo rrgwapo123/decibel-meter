@@ -1,5 +1,5 @@
 import React from 'react';
-import './reports.css';
+import '../styles/reports.css';
 import ReportUpdate from './ReportUpdate';
 
 // Tailwind CSS badge rendering helper

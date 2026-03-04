@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './sidebar.css';
+import '../styles/sidebar.css';
 
 const links = [
   { name: 'Dashboard', to: '/dashboard' },
