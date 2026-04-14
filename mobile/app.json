@@ -4,17 +4,29 @@
     "slug": "decibel-meter-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": false,
+    "splash": {
+      "image": "assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "package": "com.mikelra.decibelmeter",
+      "versionCode": 1,
       "adaptiveIcon": {
+        "foregroundImage": "assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
-    "web": {
+    "web": {},
+    "extra": {
+      "eas": {
+        "projectId": "94ad33a9-ff85-4f3f-8a9a-083d173a67b1"
+      }
     }
   }
 }
